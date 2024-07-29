@@ -5,19 +5,14 @@ import type { Dimensions, QueuedImage } from "@canva/asset";
 import type { NativeElementWithBox, PageBackgroundFill } from "@canva/design";
 import { themes } from "src/components/ThemeSelector";
 
-export interface AiResponse {
+export interface SlideContent {
   title: string;
   subtitle: string;
   description: string;
-  backgroundImage: string;
-  primaryElement: {
-    type: string;
-    data: string;
-  };
 }
 
 export interface GetLayoutConfigProps {
-  data: AiResponse;
+  data: SlideContent;
   layoutIndex: number;
 }
 
@@ -27,10 +22,8 @@ export interface Page {
   title: string
 }
 
-export const getPresets = (
-  data: AiResponse,
-  primaryImage: QueuedImage,
-  backgroundImage: QueuedImage,
+export const getLayoutPresets = (
+  data: SlideContent,
   defaultPageDimensions: Dimensions | undefined,
   themeIndex: number
 ): Page[] => {
@@ -72,22 +65,6 @@ export const getPresets = (
           left: 120,
           width: 900,
         },
-        {
-          type: "IMAGE",
-          ref: backgroundImage.ref,
-          top: 0,
-          left: defaultPageDimensions.width - 400,
-          width: 400,
-          height: defaultPageDimensions.height,
-        },
-        {
-          type: "IMAGE",
-          ref: primaryImage.ref,
-          top: defaultPageDimensions.height * 0.125,
-          left: 1200,
-          width: 'auto',
-          height: defaultPageDimensions.height * 0.75,
-        },
       ],
       background: {
         color: backgroundColor,
@@ -123,22 +100,6 @@ export const getPresets = (
           top: 370,
           left: defaultPageDimensions.width * 0.5,
           width: 900,
-        },
-        {
-          type: "IMAGE",
-          ref: backgroundImage.ref,
-          top: 0,
-          left: 0,
-          width: defaultPageDimensions.width,
-          height: defaultPageDimensions.height * 0.145,
-        },
-        {
-          type: "IMAGE",
-          ref: primaryImage.ref,
-          top: 190,
-          left: 30,
-          width: defaultPageDimensions.width * 0.5 - 60,
-          height: defaultPageDimensions.height * 0.79,
         },
       ],
       background: {
@@ -176,22 +137,6 @@ export const getPresets = (
           left: defaultPageDimensions.width * 0.45,
           width: 900,
         },
-        {
-          type: "IMAGE",
-          ref: backgroundImage.ref,
-          top: 0,
-          left: 0,
-          width: 400,
-          height: defaultPageDimensions.height,
-        },
-        {
-          type: "IMAGE",
-          ref: primaryImage.ref,
-          top: defaultPageDimensions.height * 0.125,
-          left: 120,
-          width: 'auto',
-          height: defaultPageDimensions.height * 0.75,
-        },
       ],
       background: {
         color: backgroundColor,
@@ -228,22 +173,6 @@ export const getPresets = (
           left: 30,
           width: 900,
         },
-        {
-          type: "IMAGE",
-          ref: backgroundImage.ref,
-          top: 0,
-          left: 0,
-          width: defaultPageDimensions.width,
-          height: defaultPageDimensions.height * 0.145,
-        },
-        {
-          type: "IMAGE",
-          ref: primaryImage.ref,
-          top: 190,
-          left: defaultPageDimensions.width * 0.5 + 30,
-          width: defaultPageDimensions.width * 0.5 - 60,
-          height: defaultPageDimensions.height * 0.79,
-        },
       ],
       background: {
         color: backgroundColor,
@@ -253,23 +182,108 @@ export const getPresets = (
   ]
 }
 
-export const getLayoutConfig = async (data: AiResponse, layoutIndex: number, themeIndex: number): Promise<Page> => {
+export const getImagePresets = async (data: string, defaultPageDimensions: Dimensions | undefined): Promise<any> => {
+  if (!defaultPageDimensions) {
+    throw new Error("Default page dimensions are not available");
+  }
+
+  const image = await upload({
+    type: "IMAGE",
+    mimeType: "image/png",
+    url: 'https://cors-anywhere-jaagrav.onrender.com/' + data,
+    thumbnailUrl: data,
+  }).catch((e) => {
+    // eslint-disable-next-line no-console
+    console.error(e);
+  });
+
+  return [
+    [
+      {
+        type: "IMAGE",
+        ref: image.ref,
+        top: 0,
+        left: defaultPageDimensions.width - 400,
+        width: 400,
+        height: defaultPageDimensions.height,
+      },
+      {
+        type: "IMAGE",
+        ref: image.ref,
+        top: defaultPageDimensions.height * 0.125,
+        left: 1200,
+        width: defaultPageDimensions.width * 0.5 - 344,
+        height: defaultPageDimensions.height * 0.75,
+      },
+
+    ],
+    [
+      {
+        type: "IMAGE",
+        ref: image.ref,
+        top: 0,
+        left: 0,
+        width: defaultPageDimensions.width,
+        height: defaultPageDimensions.height * 0.145,
+      },
+      {
+        type: "IMAGE",
+        ref: image.ref,
+        top: 190,
+        left: 30,
+        width: defaultPageDimensions.width * 0.5 - 60,
+        height: defaultPageDimensions.height * 0.79,
+      },
+
+    ],
+    [
+      {
+        type: "IMAGE",
+        ref: image.ref,
+        top: 0,
+        left: 0,
+        width: 400,
+        height: defaultPageDimensions.height,
+      },
+      {
+        type: "IMAGE",
+        ref: image.ref,
+        top: defaultPageDimensions.height * 0.125,
+        left: 120,
+        width: defaultPageDimensions.width * 0.5 - 344,
+        height: defaultPageDimensions.height * 0.75,
+      },
+    ],
+    [
+
+      {
+        type: "IMAGE",
+        ref: image.ref,
+        top: 0,
+        left: 0,
+        width: defaultPageDimensions.width,
+        height: defaultPageDimensions.height * 0.145,
+      },
+      {
+        type: "IMAGE",
+        ref: image.ref,
+        top: 190,
+        left: 30,
+        width: defaultPageDimensions.width * 0.5 - 60,
+        height: defaultPageDimensions.height * 0.79,
+      },
+    ]
+  ]
+}
+
+export const getLayoutConfig = async (data: SlideContent, layoutIndex: number, themeIndex: number): Promise<Page> => {
   const defaultPageDimensions = await getDefaultPageDimensions();
-
-  const primaryImage = await upload({
-    type: "IMAGE",
-    mimeType: "image/jpeg",
-    url: data.primaryElement.data,
-    thumbnailUrl: data.primaryElement.data,
-  });
-
-  const backgroundImage = await upload({
-    type: "IMAGE",
-    mimeType: "image/jpeg",
-    url: data.backgroundImage,
-    thumbnailUrl: data.backgroundImage
-  });
-
-  const presets = getPresets(data, primaryImage, backgroundImage, defaultPageDimensions, themeIndex);
+  const presets = getLayoutPresets(data, defaultPageDimensions, themeIndex);
   return presets[layoutIndex];
+}
+
+export const getImageConfig = async (data: string, layoutIndex: number, imageType: number): Promise<NativeElementWithBox> => {
+  const defaultPageDimensions = await getDefaultPageDimensions();
+  const presets = await getImagePresets(data, defaultPageDimensions);
+  return presets[layoutIndex][imageType];
 }

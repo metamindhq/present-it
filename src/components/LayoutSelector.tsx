@@ -20,7 +20,7 @@ const LayoutSelector: React.FC<LayoutSelectorProps> = ({
   return (
     <div
       style={{
-        height: "calc(100vh - 53rem)",
+        height: "calc(100vh - 58rem)",
         overflow: "auto",
         borderRadius: "8px",
       }}

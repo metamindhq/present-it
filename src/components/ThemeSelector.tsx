@@ -1,12 +1,13 @@
 import React from "react";
 import { Column, Columns, Swatch } from "@canva/app-ui-kit";
+import type { Color } from "@canva/app-ui-kit/dist/cjs/ui/apps/developing/ui_kit/components/swatch/swatch";
 
 interface ThemeSelectorProps {
   selectedThemeIndex: number;
   onSelect: (index: number) => void;
 }
 
-export const themes: string[][] = [
+export const themes: Color[][] = [
   ["#5BBCFF", "#E5FFFD"],
   ["#FA7070", "#FFEFEF"],
   ["#419932", "#DAFFD4"],
