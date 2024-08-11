@@ -1,5 +1,6 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@canva/app-ui-kit";
 import { HomeView } from "src/views/HomeView";
+import { NarationView } from "src/views/NarrationView";
 import styles from "styles/components.css";
 
 export default function Views() {
@@ -16,7 +17,7 @@ export default function Views() {
           <HomeView />
         </TabPanel>
         <TabPanel id="audio">
-          <div>Audio settings</div>
+          <NarationView />
         </TabPanel>
       </TabPanels>
     </Tabs>

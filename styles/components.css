@@ -20,7 +20,7 @@
   padding-right: var(--ui-kit-space-4);
 }
 
-.homeView {
+.view {
   padding-top: var(--ui-kit-space-2);
   padding-bottom: var(--ui-kit-space-2);
   overflow-y: auto;

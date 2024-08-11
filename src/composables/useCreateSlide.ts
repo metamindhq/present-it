@@ -1,4 +1,5 @@
-import { addNativeElement, addPage } from "@canva/design";
+import { upload } from "@canva/asset";
+import { addAudioTrack, addNativeElement, addPage } from "@canva/design";
 import { getImageConfig, getImagePresets, getLayoutConfig } from "src/configs/layoutConfigs";
 
 import type { SlideContent } from "src/configs/layoutConfigs";
@@ -18,7 +19,21 @@ const useCreateSlide = () => {
     await addNativeElement(layout)
   }
 
-  return { renderLayout, renderImage };
+  const renderNarration = async (audioUrl: any) => {
+    const result = await upload({
+      type: "AUDIO",
+      title: "Narration",
+      url: audioUrl.audio_public_url,
+      mimeType: "audio/mp3",
+      durationMs: audioUrl.audio_length_in_sec,
+    });
+    await result.whenUploaded();
+    await addAudioTrack({
+      ref: result.ref,
+    });
+  }
+
+  return { renderLayout, renderImage, renderNarration };
 }
 
 export default useCreateSlide;

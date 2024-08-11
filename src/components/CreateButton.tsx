@@ -15,13 +15,21 @@ import styles from "styles/components.css";
 import { themes } from "./ThemeSelector";
 
 export default function CreateButton() {
-  const { layout, theme, prompt, genre, totalSlides, isLoading, setIsLoading } =
-    useContext(AIContext);
+  const {
+    layout,
+    theme,
+    prompt,
+    genre,
+    totalSlides,
+    isLoading,
+    isAddNarrations,
+    setIsLoading,
+  } = useContext(AIContext);
 
   const [progress, setProgress] = useState<number>(0);
 
-  const { renderLayout, renderImage } = useCreateSlide();
-  const { generate, generateImage } = useAPI();
+  const { renderLayout, renderImage, renderNarration } = useCreateSlide();
+  const { generate, generateImage, generateNarration } = useAPI();
 
   const handleCreateButtonClick = async () => {
     setIsLoading(true);
@@ -60,7 +68,14 @@ Content: ${
       );
       await renderImage(aiBgImageResponse.image_public_url, layout, 1);
 
-      setProgress((slideNum + 1 / totalSlides) * 100);
+      if (isAddNarrations) {
+        const narratorResponse = await generateNarration(
+          aiResponse.speaker_note
+        );
+        await renderNarration(narratorResponse);
+      }
+
+      setProgress((slideNum / totalSlides) * 100);
     }
 
     setIsLoading(false);

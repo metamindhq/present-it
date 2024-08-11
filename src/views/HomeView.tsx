@@ -1,10 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
-  Button,
   FormField,
   MultilineInput,
   NumberInput,
-  PlusIcon,
   Rows,
 } from "@canva/app-ui-kit";
 import LayoutSelector from "../components/LayoutSelector";
@@ -28,7 +26,7 @@ export const HomeView = () => {
   } = useContext(AIContext);
 
   return (
-    <div className={styles.homeView}>
+    <div className={styles.view}>
       <Rows spacing="2u">
         <FormField
           control={(_props) => (

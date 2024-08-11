@@ -8,12 +8,16 @@ type AIContextType = {
   genre: string;
   totalSlides: number;
   isLoading: boolean;
+  isAddNarrations: boolean;
+  selectedNarrator: string;
   setPrompt: Dispatch<SetStateAction<string>>;
   setLayout: Dispatch<SetStateAction<number>>;
   setTheme: Dispatch<SetStateAction<number>>;
   setGenre: Dispatch<SetStateAction<string>>;
-  setTotalSlides: Dispatch<SetStateAction<number | undefined>>;
+  setTotalSlides: Dispatch<SetStateAction<number>>;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  setIsAddNarrations: Dispatch<SetStateAction<boolean>>;
+  setSelectedNarrator: Dispatch<SetStateAction<string>>;
 };
 
 type AIContextProviderProps = {
@@ -27,12 +31,16 @@ export const AIContext = createContext<AIContextType>({
   genre: "any",
   totalSlides: 8,
   isLoading: false,
+  isAddNarrations: true,
+  selectedNarrator: "Scarlett",
   setPrompt: () => {},
   setLayout: () => {},
   setTheme: () => {},
   setGenre: () => {},
   setTotalSlides: () => {},
   setIsLoading: () => {},
+  setIsAddNarrations: () => {},
+  setSelectedNarrator: () => {},
 });
 
 const AIContextProvider = ({ children }: AIContextProviderProps) => {
@@ -42,6 +50,8 @@ const AIContextProvider = ({ children }: AIContextProviderProps) => {
   const [genre, setGenre] = useState<string>("any");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [totalSlides, setTotalSlides] = useState<number>(8);
+  const [isAddNarrations, setIsAddNarrations] = useState<boolean>(true);
+  const [selectedNarrator, setSelectedNarrator] = useState<string>("Scarlett");
 
   return (
     <AIContext.Provider
@@ -52,11 +62,15 @@ const AIContextProvider = ({ children }: AIContextProviderProps) => {
         genre,
         totalSlides,
         isLoading,
+        isAddNarrations,
+        selectedNarrator,
         setPrompt,
         setLayout,
         setTheme,
         setGenre,
         setTotalSlides,
+        setIsAddNarrations,
+        setSelectedNarrator,
         setIsLoading,
       }}
     >
