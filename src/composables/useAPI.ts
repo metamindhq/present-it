@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { themes } from 'src/components/ThemeSelector';
 import { AIContext } from 'src/contexts/AIContextProvider';
 
-const baseURL = 'https://cors-anywhere-jaagrav.onrender.com/https://present-it-backend-5tvmeuqeua-de.a.run.app'
+const baseURL = 'https://present-it-backend-5tvmeuqeua-de.a.run.app'
 
 const useAPI = () => {
   const { theme, prompt, genre, totalSlides } =
@@ -25,7 +25,7 @@ const useAPI = () => {
     const config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: baseURL + '/generate',
+      url: baseURL + '/openai/generate',
       headers: {
         'accept': 'application/json',
         'Content-Type': 'application/json',

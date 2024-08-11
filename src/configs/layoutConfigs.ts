@@ -48,7 +48,7 @@ export const getLayoutPresets = (
         },
         {
           type: "TEXT",
-          fontSize: 48,
+          fontSize: 52,
           fontWeight: "bold",
           color: foregroundColor,
           children: [data.title],
@@ -57,7 +57,7 @@ export const getLayoutPresets = (
         },
         {
           type: "TEXT",
-          fontSize: 30,
+          fontSize: 34,
           fontWeight: "medium",
           color: foregroundColor,
           children: [data.description],
@@ -84,7 +84,7 @@ export const getLayoutPresets = (
         },
         {
           type: "TEXT",
-          fontSize: 48,
+          fontSize: 52,
           fontWeight: "bold",
           color: foregroundColor,
           children: [data.title],
@@ -93,7 +93,7 @@ export const getLayoutPresets = (
         },
         {
           type: "TEXT",
-          fontSize: 30,
+          fontSize: 34,
           fontWeight: "medium",
           color: foregroundColor,
           children: [data.description],
@@ -120,7 +120,7 @@ export const getLayoutPresets = (
         },
         {
           type: "TEXT",
-          fontSize: 48,
+          fontSize: 52,
           fontWeight: "bold",
           color: foregroundColor,
           children: [data.title],
@@ -129,7 +129,7 @@ export const getLayoutPresets = (
         },
         {
           type: "TEXT",
-          fontSize: 30,
+          fontSize: 34,
           fontWeight: "medium",
           color: foregroundColor,
           children: [data.description],
@@ -156,7 +156,7 @@ export const getLayoutPresets = (
         },
         {
           type: "TEXT",
-          fontSize: 48,
+          fontSize: 52,
           fontWeight: "bold",
           color: foregroundColor,
           children: [data.title],
@@ -165,7 +165,7 @@ export const getLayoutPresets = (
         },
         {
           type: "TEXT",
-          fontSize: 30,
+          fontSize: 34,
           fontWeight: "medium",
           color: foregroundColor,
           children: [data.description],
@@ -189,13 +189,16 @@ export const getImagePresets = async (data: string, defaultPageDimensions: Dimen
 
   const image = await upload({
     type: "IMAGE",
-    mimeType: "image/png",
-    url: 'https://cors-anywhere-jaagrav.onrender.com/' + data,
+    mimeType: "image/webp",
+    url: data,
     thumbnailUrl: data,
-  }).catch((e) => {
-    // eslint-disable-next-line no-console
-    console.error(e);
-  });
+  })
+    .catch((e) => {
+      // eslint-disable-next-line no-console
+      console.error(e);
+    });
+
+  await image.whenUploaded();
 
   return [
     [
