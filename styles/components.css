@@ -28,3 +28,11 @@
   padding-right: var(--ui-kit-space-4);
   border-bottom: 1px solid var(--ui-kit-color-border);
 }
+
+.emptyView {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-right: var(--ui-kit-space-4);
+}

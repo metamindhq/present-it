@@ -18,7 +18,7 @@
     "test:watch": "jest --no-cache --watch"
   },
   "keywords": [],
-  "author": "Canva Pty Ltd.",
+  "author": "Jaagrav Seal <contact@jaagrav.in>",
   "license": "SEE LICENSE IN LICENSE.md",
   "private": true,
   "workspaces": [
