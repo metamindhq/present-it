@@ -8,11 +8,11 @@ interface ThemeSelectorProps {
 }
 
 export const themes: Color[][] = [
-  ["#5BBCFF", "#E5FFFD"],
-  ["#FA7070", "#FFEFEF"],
-  ["#419932", "#DAFFD4"],
-  ["#F5E8C7", "#331D2C"],
   ["#D7D7D7", "#222831"],
+  ["#F5E8C7", "#331D2C"],
+  ["#e9deff", "#6c2ceb"],
+  ["#ffe4e7", "#ff5ba9"],
+  ["#d6ffa1", "#008444"],
 ];
 
 const ThemeSelector: React.FC<ThemeSelectorProps> = ({

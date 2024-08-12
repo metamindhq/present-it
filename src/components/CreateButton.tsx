@@ -37,6 +37,8 @@ export default function CreateButton() {
 
     let prevSlideSummaries = "";
     for (let slideNum = 0; slideNum < totalSlides; slideNum++) {
+      setProgress(slideNum === 0 ? 15 : (slideNum / totalSlides) * 100);
+
       const aiResponse = await generate(slideNum + 1, prevSlideSummaries);
 
       prevSlideSummaries += `Slide ${slideNum + 1}
@@ -74,8 +76,6 @@ Content: ${
         );
         await renderNarration(narratorResponse);
       }
-
-      setProgress((slideNum / totalSlides) * 100);
     }
 
     setIsLoading(false);

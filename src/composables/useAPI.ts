@@ -34,8 +34,6 @@ const useAPI = () => {
       data
     };
 
-    console.log(data)
-
     let resp: {
       data: {
         title: string;
@@ -80,8 +78,6 @@ const useAPI = () => {
       data
     };
 
-    console.log(data)
-
     let resp: {
       data: {
         image_public_url: string;
@@ -123,8 +119,6 @@ const useAPI = () => {
       },
       data
     };
-
-    console.log(data)
 
     let resp: {
       data: {

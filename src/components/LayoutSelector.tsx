@@ -11,10 +11,10 @@ const LayoutSelector: React.FC<LayoutSelectorProps> = ({
   onSelect,
 }) => {
   const themeThumbnails = [
-    "https://i.ibb.co/KXmZYR9/theme-1.png",
-    "https://i.ibb.co/drq2xch/Slide-16-9-3.png",
-    "https://i.ibb.co/sQsGSwm/Slide-16-9-4.png",
-    "https://i.ibb.co/5sNVcXD/Slide-16-9-5.png",
+    "https://i.ibb.co/LSgYF1y/Slide-16-9-10.png",
+    "https://i.ibb.co/qm8DTWG/Slide-16-9-12.png",
+    "https://i.ibb.co/rZZ6yqc/Slide-16-9-11.png",
+    "https://i.ibb.co/68fjZY5/Slide-16-9-13.png",
   ];
 
   return (
